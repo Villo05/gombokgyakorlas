@@ -4,11 +4,16 @@
  */
 package main;
 
+import java.awt.Color;
+import java.util.Random;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nemet
  */
 public class GyakorlasGombok extends javax.swing.JFrame {
+    
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GyakorlasGombok.class.getName());
 
@@ -29,16 +34,17 @@ public class GyakorlasGombok extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         pnlGombokOsszes = new javax.swing.JPanel();
         txtUres = new javax.swing.JTextField();
         lblKep = new javax.swing.JLabel();
         lblValasztottSzamok = new javax.swing.JLabel();
         pnlValasztas = new javax.swing.JPanel();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        rbtOtodik = new javax.swing.JRadioButton();
+        rbtHarmadik = new javax.swing.JRadioButton();
+        chbNulladik = new javax.swing.JCheckBox();
+        rbtHetedik = new javax.swing.JRadioButton();
         btnKilepes = new javax.swing.JButton();
         pnlGombok = new javax.swing.JPanel();
         btn4 = new javax.swing.JButton();
@@ -52,19 +58,25 @@ public class GyakorlasGombok extends javax.swing.JFrame {
         btn7 = new javax.swing.JButton();
         btn8 = new javax.swing.JButton();
         pnlJatekosszes = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        pnlJatekosValasztasa = new javax.swing.JPanel();
+        rbtKo = new javax.swing.JRadioButton();
+        rbtPapir = new javax.swing.JRadioButton();
+        rbtOllo = new javax.swing.JRadioButton();
+        lblCim = new javax.swing.JLabel();
+        pnéGepValasztasa = new javax.swing.JPanel();
+        txtGep = new javax.swing.JTextField();
+        lblKepek = new javax.swing.JLabel();
+        pnlEredmeny = new javax.swing.JPanel();
+        txtEredmeny = new javax.swing.JTextField();
+        btnKilep = new javax.swing.JButton();
+        btnIndit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         lblKep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/kepek/d27c1fbe-b56d-4ded-a85e-e55f108c4d4c.jpeg"))); // NOI18N
 
@@ -72,13 +84,33 @@ public class GyakorlasGombok extends javax.swing.JFrame {
 
         pnlValasztas.setBorder(javax.swing.BorderFactory.createTitledBorder("Választás"));
 
-        jRadioButton2.setText("5. gomb");
+        rbtOtodik.setText("5. gomb");
+        rbtOtodik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtOtodikActionPerformed(evt);
+            }
+        });
 
-        jRadioButton1.setText("3. gomb");
+        rbtHarmadik.setText("3. gomb");
+        rbtHarmadik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtHarmadikActionPerformed(evt);
+            }
+        });
 
-        jCheckBox1.setText("0. gomb");
+        chbNulladik.setText("0. gomb");
+        chbNulladik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbNulladikActionPerformed(evt);
+            }
+        });
 
-        jRadioButton3.setText("7. gomb");
+        rbtHetedik.setText("7. gomb");
+        rbtHetedik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtHetedikActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlValasztasLayout = new javax.swing.GroupLayout(pnlValasztas);
         pnlValasztas.setLayout(pnlValasztasLayout);
@@ -87,50 +119,105 @@ public class GyakorlasGombok extends javax.swing.JFrame {
             .addGroup(pnlValasztasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlValasztasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rbtHarmadik, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbtOtodik, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbtHetedik, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chbNulladik, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         pnlValasztasLayout.setVerticalGroup(
             pnlValasztasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlValasztasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jRadioButton1)
+                .addComponent(rbtHarmadik)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton2)
+                .addComponent(rbtOtodik)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton3)
+                .addComponent(rbtHetedik)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox1)
+                .addComponent(chbNulladik)
                 .addContainerGap())
         );
 
         btnKilepes.setText("Kilépés");
+        btnKilepes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKilepesActionPerformed(evt);
+            }
+        });
 
         pnlGombok.setBorder(javax.swing.BorderFactory.createTitledBorder("Gombok"));
 
         btn4.setText("4");
+        btn4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn4ActionPerformed(evt);
+            }
+        });
 
         btn0.setText("0");
+        btn0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn0ActionPerformed(evt);
+            }
+        });
 
         btn5.setText("5");
+        btn5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn5ActionPerformed(evt);
+            }
+        });
 
         btn9.setText("9");
+        btn9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn9ActionPerformed(evt);
+            }
+        });
 
         btn2.setText("2");
+        btn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn2ActionPerformed(evt);
+            }
+        });
 
         btn1.setText("1");
         btn1.setMaximumSize(new java.awt.Dimension(75, 35));
+        btn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn1ActionPerformed(evt);
+            }
+        });
 
         btn6.setText("6");
+        btn6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn6ActionPerformed(evt);
+            }
+        });
 
         btn3.setText("3");
+        btn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn3ActionPerformed(evt);
+            }
+        });
 
         btn7.setText("7");
+        btn7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn7ActionPerformed(evt);
+            }
+        });
 
         btn8.setText("8");
+        btn8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlGombokLayout = new javax.swing.GroupLayout(pnlGombok);
         pnlGombok.setLayout(pnlGombokLayout);
@@ -227,114 +314,141 @@ public class GyakorlasGombok extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Gombok", pnlGombokOsszes);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Játékos választása"));
+        pnlJatekosValasztasa.setBorder(javax.swing.BorderFactory.createTitledBorder("Játékos választása"));
 
-        jRadioButton4.setText("Kő");
-
-        jRadioButton6.setText("Papír");
-
-        jRadioButton5.setText("Olló");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jRadioButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton5)
-                .addContainerGap())
-        );
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Kő, papír, olló");
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Gép választása"));
-
-        jTextField1.setEditable(false);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField1)
-                .addContainerGap())
-        );
-
-        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Eredmény"));
-
-        jTextField2.setEditable(false);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup2.add(rbtKo);
+        rbtKo.setText("Kő");
+        rbtKo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                rbtKoActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        buttonGroup2.add(rbtPapir);
+        rbtPapir.setText("Papír");
+        rbtPapir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtPapirActionPerformed(evt);
+            }
+        });
+
+        buttonGroup2.add(rbtOllo);
+        rbtOllo.setText("Olló");
+        rbtOllo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtOlloActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlJatekosValasztasaLayout = new javax.swing.GroupLayout(pnlJatekosValasztasa);
+        pnlJatekosValasztasa.setLayout(pnlJatekosValasztasaLayout);
+        pnlJatekosValasztasaLayout.setHorizontalGroup(
+            pnlJatekosValasztasaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlJatekosValasztasaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                .addGroup(pnlJatekosValasztasaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rbtOllo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbtPapir, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbtKo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+        pnlJatekosValasztasaLayout.setVerticalGroup(
+            pnlJatekosValasztasaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlJatekosValasztasaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rbtKo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbtPapir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbtOllo)
                 .addContainerGap())
         );
 
-        jButton1.setText("Kilépés");
+        lblCim.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblCim.setText("Kő, papír, olló");
+
+        pnéGepValasztasa.setBorder(javax.swing.BorderFactory.createTitledBorder("Gép választása"));
+
+        txtGep.setEditable(false);
+
+        javax.swing.GroupLayout pnéGepValasztasaLayout = new javax.swing.GroupLayout(pnéGepValasztasa);
+        pnéGepValasztasa.setLayout(pnéGepValasztasaLayout);
+        pnéGepValasztasaLayout.setHorizontalGroup(
+            pnéGepValasztasaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnéGepValasztasaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtGep, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        pnéGepValasztasaLayout.setVerticalGroup(
+            pnéGepValasztasaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnéGepValasztasaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtGep)
+                .addContainerGap())
+        );
+
+        lblKepek.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblKepek.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+
+        pnlEredmeny.setBorder(javax.swing.BorderFactory.createTitledBorder("Eredmény"));
+
+        txtEredmeny.setEditable(false);
+
+        javax.swing.GroupLayout pnlEredmenyLayout = new javax.swing.GroupLayout(pnlEredmeny);
+        pnlEredmeny.setLayout(pnlEredmenyLayout);
+        pnlEredmenyLayout.setHorizontalGroup(
+            pnlEredmenyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEredmenyLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtEredmeny, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlEredmenyLayout.setVerticalGroup(
+            pnlEredmenyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEredmenyLayout.createSequentialGroup()
+                .addComponent(txtEredmeny, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        btnKilep.setText("Kilépés");
+        btnKilep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKilepActionPerformed(evt);
+            }
+        });
+
+        btnIndit.setText("Indít");
+        btnIndit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInditActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlJatekosszesLayout = new javax.swing.GroupLayout(pnlJatekosszes);
         pnlJatekosszes.setLayout(pnlJatekosszesLayout);
         pnlJatekosszesLayout.setHorizontalGroup(
             pnlJatekosszesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlJatekosszesLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(pnlJatekosszesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlJatekosszesLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnlJatekosValasztasa, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnéGepValasztasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblKepek, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlJatekosszesLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(pnlEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnIndit, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnKilep, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(pnlJatekosszesLayout.createSequentialGroup()
                 .addGap(115, 115, 115)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addComponent(lblCim, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlJatekosszesLayout.setVerticalGroup(
             pnlJatekosszesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,17 +457,19 @@ public class GyakorlasGombok extends javax.swing.JFrame {
                 .addGroup(pnlJatekosszesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlJatekosszesLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addGroup(pnlJatekosszesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnKilep)
+                            .addComponent(btnIndit)))
                     .addGroup(pnlJatekosszesLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(lblCim)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlJatekosszesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlJatekosszesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(pnlJatekosValasztasa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pnéGepValasztasa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblKepek, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(pnlEredmeny, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -379,10 +495,206 @@ public class GyakorlasGombok extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
+        if (btn1.getBackground() == Color.MAGENTA){
+            btn1.setBackground(Color.DARK_GRAY);
+        }else{
+            btn1.setBackground(Color.MAGENTA);
+            txtUres.setText(txtUres.getText () + "1");}
+    }//GEN-LAST:event_btn1ActionPerformed
 
+    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
+        if (btn2.getBackground() == Color.MAGENTA){
+            btn2.setBackground(Color.DARK_GRAY);
+        }else{
+            btn2.setBackground(Color.MAGENTA);
+            txtUres.setText(txtUres.getText () + "3");}
+    }//GEN-LAST:event_btn2ActionPerformed
+
+    private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
+        if (btn3.getBackground() == Color.MAGENTA){
+            btn3.setBackground(Color.DARK_GRAY);
+        }else{
+            btn3.setBackground(Color.MAGENTA);
+            txtUres.setText(txtUres.getText () + "3");}
+    }//GEN-LAST:event_btn3ActionPerformed
+
+    private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
+        if (btn4.getBackground() == Color.MAGENTA){
+            btn4.setBackground(Color.DARK_GRAY);
+        }else{
+            btn4.setBackground(Color.MAGENTA);
+            txtUres.setText(txtUres.getText () + "4");}
+    }//GEN-LAST:event_btn4ActionPerformed
+
+    private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
+        if (btn5.getBackground() == Color.MAGENTA){
+            btn5.setBackground(Color.DARK_GRAY);
+        }else{
+            btn5.setBackground(Color.MAGENTA);
+            txtUres.setText(txtUres.getText () + "5");}
+    }//GEN-LAST:event_btn5ActionPerformed
+
+    private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
+        if (btn6.getBackground() == Color.MAGENTA){
+            btn6.setBackground(Color.DARK_GRAY);
+        }else{
+            btn6.setBackground(Color.MAGENTA);
+            txtUres.setText(txtUres.getText () + "6");}
+    }//GEN-LAST:event_btn6ActionPerformed
+
+    private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
+        if (btn7.getBackground() == Color.MAGENTA){
+            btn7.setBackground(Color.DARK_GRAY);
+        }else{
+            btn7.setBackground(Color.MAGENTA);
+            txtUres.setText(txtUres.getText () + "7");}
+    }//GEN-LAST:event_btn7ActionPerformed
+
+    private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
+        if (btn8.getBackground() == Color.MAGENTA){
+            btn8.setBackground(Color.DARK_GRAY);
+        }else{
+            btn8.setBackground(Color.MAGENTA);
+            txtUres.setText(txtUres.getText () + "8");}
+    }//GEN-LAST:event_btn8ActionPerformed
+
+    private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
+        if (btn9.getBackground() == Color.MAGENTA){
+            btn9.setBackground(Color.DARK_GRAY);
+        }else{
+            btn9.setBackground(Color.MAGENTA);
+            txtUres.setText(txtUres.getText () + "9");}
+    }//GEN-LAST:event_btn9ActionPerformed
+
+    private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
+        if (btn0.getBackground() == Color.MAGENTA){
+            btn0.setBackground(Color.DARK_GRAY);
+        }else{
+            btn0.setBackground(Color.MAGENTA);
+            txtUres.setText(txtUres.getText () + "0");}
+    }//GEN-LAST:event_btn0ActionPerformed
+
+    private void rbtHarmadikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtHarmadikActionPerformed
+        btn5.setBackground(Color.MAGENTA);
+        btn7.setBackground(Color.MAGENTA);
+        
+        if(btn3.getBackground() == Color.DARK_GRAY){
+            btn3.setBackground(Color.MAGENTA);
+        }else{
+            btn3.setBackground(Color.DARK_GRAY);
+            txtUres.setText(txtUres.getText() + "3");
+        }
+    }//GEN-LAST:event_rbtHarmadikActionPerformed
+
+    private void rbtOtodikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtOtodikActionPerformed
+        btn3.setBackground(Color.MAGENTA);
+        btn7.setBackground(Color.MAGENTA);
+        
+        if(btn5.getBackground() == Color.DARK_GRAY){
+            btn5.setBackground(Color.MAGENTA);
+        }else{
+            btn5.setBackground(Color.DARK_GRAY);
+            txtUres.setText(txtUres.getText() + "5");
+        }
+    }//GEN-LAST:event_rbtOtodikActionPerformed
+
+    private void rbtHetedikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtHetedikActionPerformed
+        btn3.setBackground(Color.MAGENTA);
+        btn5.setBackground(Color.MAGENTA);
+        
+        if(btn7.getBackground() == Color.DARK_GRAY){
+            btn7.setBackground(Color.MAGENTA);
+        }else{
+            btn7.setBackground(Color.DARK_GRAY);
+            txtUres.setText(txtUres.getText() + "7");
+        }
+    }//GEN-LAST:event_rbtHetedikActionPerformed
+
+    private void chbNulladikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbNulladikActionPerformed
+
+        if(btn0.getBackground() == Color.DARK_GRAY){
+            btn0.setBackground(Color.MAGENTA);
+        }else{
+            btn0.setBackground(Color.DARK_GRAY);
+            txtUres.setText(txtUres.getText() + "0");
+        }
+    }//GEN-LAST:event_chbNulladikActionPerformed
+
+    private void btnKilepesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKilepesActionPerformed
+        int gombTipus = JOptionPane.YES_NO_OPTION;
+        int valasz = JOptionPane.showConfirmDialog(rootPane, "Biztos kilép?", "KILÉPÉS", gombTipus);
+        if(valasz == JOptionPane.YES_OPTION){
+            System.exit(0);}
+    }//GEN-LAST:event_btnKilepesActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        int gombTipus = JOptionPane.YES_NO_OPTION;
+        int valasz = JOptionPane.showConfirmDialog(rootPane, "Biztos kilép?", "KILÉPÉS", gombTipus);
+        if(valasz == JOptionPane.YES_OPTION){
+            System.exit(0);}
+    }//GEN-LAST:event_formWindowClosing
+
+    private void rbtKoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtKoActionPerformed
+        kepBeallitas("0");
+    }//GEN-LAST:event_rbtKoActionPerformed
+
+    private void rbtPapirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtPapirActionPerformed
+        kepBeallitas("2");
+    }//GEN-LAST:event_rbtPapirActionPerformed
+
+    private void rbtOlloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtOlloActionPerformed
+        kepBeallitas("1");
+    }//GEN-LAST:event_rbtOlloActionPerformed
+
+    private void btnInditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInditActionPerformed
+        String player = "";
+    
+    if (rbtKo.isSelected()) player = "Kő";
+    else if (rbtPapir.isSelected()) player = "Papír";
+    else if (rbtOllo.isSelected()) player = "Olló";
+    else {
+        txtEredmeny.setText("Válassz egy lehetőséget!");
+        return;
+    }
+
+    // Gép választása
+    String[] opciok = {"Kő", "Papír", "Olló"};
+    String gep = opciok[(int)(Math.random() * 3)];
+
+    txtGep.setText(gep);
+
+    // Eredmény
+    if (player.equals(gep)) {
+        txtEredmeny.setText("Döntetlen");
+    } else if (
+        (player.equals("Kő") && gep.equals("Olló")) ||
+        (player.equals("Papír") && gep.equals("Kő")) ||
+        (player.equals("Olló") && gep.equals("Papír"))
+    ) {
+        txtEredmeny.setText("Nyertél!");
+    } else {
+        txtEredmeny.setText("Vesztettél!");
+    }
+    
+    }//GEN-LAST:event_btnInditActionPerformed
+
+    private void btnKilepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKilepActionPerformed
+        int gombTipus = JOptionPane.YES_NO_OPTION;
+        int valasz = JOptionPane.showConfirmDialog(rootPane, "Biztos kilép?", "KILÉPÉS", gombTipus);
+        if(valasz == JOptionPane.YES_OPTION){
+            System.exit(0);}
+    }//GEN-LAST:event_btnKilepActionPerformed
+
+       
+    
+    
+    
+    private void kepBeallitas(String valasztas){
+        String src = "/main/kepek/" + valasztas + ".jpeg";
+        lblKepek.setIcon(new javax.swing.ImageIcon(getClass().getResource(src)));
+        btnIndit.setEnabled(true);
+    }
     /**
      * @param args the command line arguments
      */
@@ -419,30 +731,32 @@ public class GyakorlasGombok extends javax.swing.JFrame {
     private javax.swing.JButton btn7;
     private javax.swing.JButton btn8;
     private javax.swing.JButton btn9;
+    private javax.swing.JButton btnIndit;
+    private javax.swing.JButton btnKilep;
     private javax.swing.JButton btnKilepes;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JCheckBox chbNulladik;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblCim;
     private javax.swing.JLabel lblKep;
+    private javax.swing.JLabel lblKepek;
     private javax.swing.JLabel lblValasztottSzamok;
+    private javax.swing.JPanel pnlEredmeny;
     private javax.swing.JPanel pnlGombok;
     private javax.swing.JPanel pnlGombokOsszes;
+    private javax.swing.JPanel pnlJatekosValasztasa;
     private javax.swing.JPanel pnlJatekosszes;
     private javax.swing.JPanel pnlValasztas;
+    private javax.swing.JPanel pnéGepValasztasa;
+    private javax.swing.JRadioButton rbtHarmadik;
+    private javax.swing.JRadioButton rbtHetedik;
+    private javax.swing.JRadioButton rbtKo;
+    private javax.swing.JRadioButton rbtOllo;
+    private javax.swing.JRadioButton rbtOtodik;
+    private javax.swing.JRadioButton rbtPapir;
+    private javax.swing.JTextField txtEredmeny;
+    private javax.swing.JTextField txtGep;
     private javax.swing.JTextField txtUres;
     // End of variables declaration//GEN-END:variables
 }
