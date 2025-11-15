@@ -72,14 +72,26 @@ public class GyakorlasGombok extends javax.swing.JFrame {
         btnIndit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
         });
 
+        pnlGombokOsszes.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                pnlGombokOsszesAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
         lblKep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/kepek/d27c1fbe-b56d-4ded-a85e-e55f108c4d4c.jpeg"))); // NOI18N
 
+        lblValasztottSzamok.setForeground(new java.awt.Color(255, 255, 255));
         lblValasztottSzamok.setText("Választott számok:");
 
         pnlValasztas.setBorder(javax.swing.BorderFactory.createTitledBorder("Választás"));
@@ -276,20 +288,22 @@ public class GyakorlasGombok extends javax.swing.JFrame {
             pnlGombokOsszesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlGombokOsszesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlGombokOsszesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnKilepes)
+                .addGroup(pnlGombokOsszesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pnlGombok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlGombokOsszesLayout.createSequentialGroup()
-                        .addGroup(pnlGombokOsszesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(pnlGombok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnlGombokOsszesLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(lblValasztottSzamok, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtUres, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(6, 6, 6)
+                        .addComponent(lblValasztottSzamok, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtUres, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(pnlGombokOsszesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlGombokOsszesLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlGombokOsszesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pnlValasztas, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblKep))))
+                            .addComponent(lblKep)))
+                    .addGroup(pnlGombokOsszesLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(btnKilepes)))
                 .addContainerGap())
         );
         pnlGombokOsszesLayout.setVerticalGroup(
@@ -313,6 +327,16 @@ public class GyakorlasGombok extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Gombok", pnlGombokOsszes);
+
+        pnlJatekosszes.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                pnlJatekosszesAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         pnlJatekosValasztasa.setBorder(javax.swing.BorderFactory.createTitledBorder("Játékos választása"));
 
@@ -365,6 +389,7 @@ public class GyakorlasGombok extends javax.swing.JFrame {
         );
 
         lblCim.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblCim.setForeground(new java.awt.Color(255, 255, 255));
         lblCim.setText("Kő, papír, olló");
 
         pnéGepValasztasa.setBorder(javax.swing.BorderFactory.createTitledBorder("Gép választása"));
@@ -430,24 +455,25 @@ public class GyakorlasGombok extends javax.swing.JFrame {
         pnlJatekosszesLayout.setHorizontalGroup(
             pnlJatekosszesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlJatekosszesLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(pnlJatekosszesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlJatekosszesLayout.createSequentialGroup()
-                        .addComponent(pnlJatekosValasztasa, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(pnéGepValasztasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblKepek, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(pnlJatekosszesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlJatekosszesLayout.createSequentialGroup()
+                                .addComponent(pnlJatekosValasztasa, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(pnéGepValasztasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblKepek, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlJatekosszesLayout.createSequentialGroup()
+                                .addComponent(pnlEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addGroup(pnlJatekosszesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnIndit, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                                    .addComponent(btnKilep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(pnlJatekosszesLayout.createSequentialGroup()
-                        .addComponent(pnlEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnIndit, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnKilep, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(pnlJatekosszesLayout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addComponent(lblCim, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(115, 115, 115)
+                        .addComponent(lblCim, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlJatekosszesLayout.setVerticalGroup(
@@ -457,9 +483,10 @@ public class GyakorlasGombok extends javax.swing.JFrame {
                 .addGroup(pnlJatekosszesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlJatekosszesLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(pnlJatekosszesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnKilep)
-                            .addComponent(btnIndit)))
+                        .addComponent(btnIndit)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnKilep)
+                        .addGap(19, 19, 19))
                     .addGroup(pnlJatekosszesLayout.createSequentialGroup()
                         .addComponent(lblCim)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -685,6 +712,14 @@ public class GyakorlasGombok extends javax.swing.JFrame {
         if(valasz == JOptionPane.YES_OPTION){
             System.exit(0);}
     }//GEN-LAST:event_btnKilepActionPerformed
+
+    private void pnlGombokOsszesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_pnlGombokOsszesAncestorAdded
+        pnlGombokOsszes.setBackground(Color.black);
+    }//GEN-LAST:event_pnlGombokOsszesAncestorAdded
+
+    private void pnlJatekosszesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_pnlJatekosszesAncestorAdded
+        pnlJatekosszes.setBackground(Color.black);
+    }//GEN-LAST:event_pnlJatekosszesAncestorAdded
 
        
     
